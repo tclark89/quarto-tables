@@ -98,6 +98,8 @@ That's a little better. At least we know what the columns are,
 
   Some other things we can do are:
   
+  - Add row names: `row.names=c("Vector", "of", "names")`
+    - mtcars already has rownames, so none need to be added here.
   - Add a caption: `caption = "Caption"`
   - Align text: `align = "c"`
     - This can be set table-wide or by column. The string will be repeated
