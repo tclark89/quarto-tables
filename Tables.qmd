@@ -102,7 +102,7 @@ That's a little better. At least we know what the columns are,
   - Align text: `align = "c"`
     - This can be set table-wide or by column. The string will be repeated
   if there are more columns.
-  - Specify the digts, also table-wide or by column.
+  - Specify the digits, also table-wide or by column.
   
 ```{r}
 #| label: knitr-more-options
