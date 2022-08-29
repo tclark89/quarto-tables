@@ -17,7 +17,7 @@ One could just print the raw data into the document, like so:
 
 ```{r}
 #| label: mtcars-basic
-mtcars
+head(mtcars)
 ```
 
 But that's not very friendly or professional, is it? 
@@ -52,6 +52,9 @@ library(DT)
 
 ## Ol' Reliable: Knitr's Kable
 
+
+### The Basics
+
 The `kable` function from the Knitr library is always a good place 
   to start when putting together a table.
   (Note that kable must be specified with `knitr::kable` since we've
@@ -60,6 +63,62 @@ The `kable` function from the Knitr library is always a good place
 ```{r}
 #| label: kable-basic
 mtcars %>% 
+  head() %>% 
   knitr::kable()
+```
+
+Well that's not too exciting. It's not much different than just 
+  printing the dataframe. It just has bolded column headers. 
+  
+  
+### Adding some detail
+
+Luckily `kable` has some options that we can invoke.
+  For example, detailed column names.
+
+```{r}
+#| label: kable-col_names
+mtcars %>% 
+  head() %>% 
+  knitr::kable(
+    col.names = c("Miles/(US) Gallon", "Number of Cylinders",
+    "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
+    "Weight (1000 lbs.)", "1/4 Mile Time", 
+    "Engine (0=V-shaped, 1=Straight",
+    "Transmission: (0=automatic, 1=manual)",
+    "Number of Forward Gears",
+    "Number of Carburetors")
+  )
+```
+
+That's a little better. At least we know what the columns are, 
+  though it's a little cramped.
+  
+### More Options
+
+  Some other things we can do are:
+  
+  - Add a caption: `caption = "Caption"`
+  - Align text: `align = "c"`
+    - This can be set table-wide or by column. The string will be repeated
+  if there are more columns.
+  - Specify the digts, also table-wide or by column.
+  
+```{r}
+#| label: knitr-more-options
+mtcars %>% 
+  head() %>% 
+  knitr::kable(
+    col.names = c("Miles/(US) Gallon", "Number of Cylinders",
+    "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
+    "Weight (1000 lbs.)", "1/4 Mile Time", 
+    "Engine (0=V-shaped, 1=Straight",
+    "Transmission: (0=automatic, 1=manual)",
+    "Number of Forward Gears",
+    "Number of Carburetors"),
+    caption = "Motor Trend Car Road Tests",
+    align = "r",
+    digits=c(1, 0, 0, 0, 0, 2, 1, 0, 0, 0, 0)
+  )
 ```
 
