@@ -1,0 +1,65 @@
+---
+title: "Nice Looking Tables in Quarto"
+author: "Tyler Clark"
+format: html
+toc: true
+---
+
+# Making Tables in Quarto
+
+There are several ways to make tables in Quarto, with 
+  different pros and cons to them.
+  
+  
+## Why Tables?
+
+One could just print the raw data into the document, like so:
+
+```{r}
+#| label: mtcars-basic
+mtcars
+```
+
+But that's not very friendly or professional, is it? 
+  How does someone evaluate what the data is saying?
+  Why would they even read your report if you're just spitting
+  out data? That is where the tools offered by 
+  R^[or Python, or what have you. I use R.] and Quarto
+  come in. 
+
+
+## Tools of the Trade
+
+The libraries that are used in this document are:
+
+- The tidyverse: `library(tidyverse)`
+- Knitr: `library(knitr)`
+- KableExtra: `library(kableExtra)`
+- gt: `library(gt)`
+- DataTables: `library(DT)`
+- More (like flextable, huxtable, etc.) may come later
+
+```{r}
+#| label: load-libraries
+
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(gt)
+library(DT)
+
+```
+
+## Ol' Reliable: Knitr's Kable
+
+The `kable` function from the Knitr library is always a good place 
+  to start when putting together a table.
+  (Note that kable must be specified with `knitr::kable` since we've
+  loaded kableExtra)
+  
+```{r}
+#| label: kable-basic
+mtcars %>% 
+  knitr::kable()
+```
+
