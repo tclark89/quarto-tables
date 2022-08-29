@@ -85,12 +85,12 @@ mtcars %>%
   head() %>% 
   knitr::kable(
     col.names = c("Miles/(US) Gallon", "Number of Cylinders",
-    "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
-    "Weight (1000 lbs.)", "1/4 Mile Time", 
-    "Engine (0=V-shaped, 1=Straight",
-    "Transmission: (0=automatic, 1=manual)",
-    "Number of Forward Gears",
-    "Number of Carburetors")
+                  "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
+                  "Weight (1000 lbs.)", "1/4 Mile Time", 
+                  "Engine (0=V-shaped, 1=Straight",
+                  "Transmission: (0=automatic, 1=manual)",
+                  "Number of Forward Gears",
+                  "Number of Carburetors")
   )
 ```
 
@@ -115,12 +115,12 @@ mtcars %>%
   head() %>% 
   knitr::kable(
     col.names = c("Miles/(US) Gallon", "Number of Cylinders",
-    "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
-    "Weight (1000 lbs.)", "1/4 Mile Time", 
-    "Engine (0=V-shaped, 1=Straight",
-    "Transmission: (0=automatic, 1=manual)",
-    "Number of Forward Gears",
-    "Number of Carburetors"),
+                  "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
+                  "Weight (1000 lbs.)", "1/4 Mile Time", 
+                  "Engine (0=V-shaped, 1=Straight",
+                  "Transmission: (0=automatic, 1=manual)",
+                  "Number of Forward Gears",
+                  "Number of Carburetors"),
     caption = "Motor Trend Car Road Tests",
     align = "r",
     digits=c(1, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0)
