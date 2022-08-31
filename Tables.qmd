@@ -164,9 +164,9 @@ mtcars %>%
   for the various options `knitr` has under the hood, especially for
   TeX tables.
   
-### Getting Stylish
+### Getting Started
 
-The fast way to clean up a `kable` is to add one of the style functions
+The fast way to clean up a `kable` is to add one of the functions
   from `kableExtra`:
   
   - `kable_classic`
@@ -176,7 +176,6 @@ The fast way to clean up a `kable` is to add one of the style functions
   - `kable_minimal`
   - `kable_paper`
   
-And the `kable_styling` function for more options.
 
 Examples (with code and some columns omited for brevity):
 
@@ -237,4 +236,9 @@ kableFunc(caption = "kable_minimal") %>%
 kableFunc(caption = "kable_paper") %>% 
   kable_paper()
 ```
+
+All of these options provide pretty good tables. 
+When further customization is desired, enter: `kable_styling`.
+
+### Getting Stylish
 
