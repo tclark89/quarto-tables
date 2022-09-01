@@ -38,7 +38,9 @@ The libraries that are used in this document are:
 - KableExtra: `library(kableExtra)`
 - gt: `library(gt)`
 - DataTables: `library(DT)`
-- More (`flextable`, `huxtable`, etc.) may come later
+- flextable: `library(flextable)`
+- huxtable: `library(huxtable)`
+- More may come later
 
 ```{r}
 #| label: load-libraries
@@ -50,6 +52,8 @@ library(knitr)
 library(kableExtra)
 library(gt)
 library(DT)
+library(flextable)
+library(huxtable)
 
 ```
 
