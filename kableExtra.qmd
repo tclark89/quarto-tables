@@ -1,7 +1,7 @@
 ## kableExtra: The Next Step
 
-kableExtra is a library that makes it much easier to build on 
-`knitr::kable` tables without having to muck around with CSS. 
+kableExtra is a library that makes it much easier to build on `knitr::kable` 
+  tables without having to muck around with CSS.
 
 ```{r}
 #| label: kableExtra-more-options
@@ -21,27 +21,24 @@ mtcars |>
   )
 ```
 
-`knitr::kable` and `kableExtra::kable` are basically identical functions,
-as seen above. `kableExtra` also includes the `kbl` function, which
-produces kable tables but has better auto-completion and help info 
-for the various options `knitr` has under the hood, especially for
-TeX tables.
+`knitr::kable` and `kableExtra::kable` are basically identical functions, as 
+  seen above. `kableExtra` also includes the `kbl` function, which produces 
+  kable tables but has better auto-completion and help info for the various 
+  options `knitr` has under the hood, especially for TeX tables.
 
 ### Getting Started
 
-The fast way to clean up a `kable` is to add one of the functions
-from `kableExtra`:
-  
-  - `kable_classic`
-- `kable_classic_2`
-- `kable_material`
-- `kable_material_dark`
-- `kable_minimal`
-- `kable_paper`
+The fast way to clean up a `kable` is to add one of the functions from `kableExtra`:
 
+-   `kable_classic`
+-   `kable_classic_2`
+-   `kable_material`
+-   `kable_material_dark`
+-   `kable_minimal`
+-   `kable_paper`
 
 Examples (with code and some columns omited for brevity):
-  
+
 ```{r}
 #| label: kable-func
 
@@ -56,8 +53,6 @@ kableFunc <- function(caption){
     )
 }
 ```
-
-
 
 ```{r}
 #| label: kable-classic
@@ -100,25 +95,26 @@ kableFunc(caption = "kable_paper") |>
   kable_paper()
 ```
 
-All of these options provide pretty good tables. 
-When further customization is desired, enter: `kable_styling`.
+All of these options provide pretty good tables. When further customization is 
+  desired, enter: `kable_styling`.
 
 ### Getting Stylish
 
-The `kable_styling` function can be used to further customize the table with ease.
-  the `bootstrap_options` option allows the user to specify options such as
-  `basic`, `striped`, `bordered` and more. See `help(kable_styling)` for more
-  information. I like to use `c("striped", "responsive", "hover")` as a starting
-  point for HTML tables. 
+The `kable_styling` function can be used to further customize the table with ease. 
+  The `bootstrap_options` option allows the user to specify options such as 
+  `basic`, `striped`, `bordered` and more. 
+  See `help(kable_styling)` for more information. 
+  I like to use `c("striped", "responsive", "hover")` as a starting point for 
+  HTML tables.
 
 ```{r}
-#| kable-styling-ex1
+#| label: kable-styling-ex1
 kableFunc(caption="Striped, Responsive, Hover") |> 
   kable_styling(bootstrap_options = c("striped", "responsive", "hover"))
 ```
 
 These options can be used on basic `kable` tables or those styled with the 
-various functions above. 
+  various functions above.
 
 ```{r}
 #| label: kable-classic2-striped
@@ -128,3 +124,21 @@ kableFunc(caption = "kable_classic_2 + bootstrap options") |>
 ```
 
 ### Columns and Rows and Footnotes, oh my!
+
+`kableExtra` allows us to group columns and rows with the `add_header_above` 
+  and `pack_rows` function.
+  
+```{r}
+#| label: pack-rows-add-header
+mtcars |> 
+  select(mpg:qsec) |> 
+  head(12) |> 
+  rownames_to_column(var="Model") |> 
+  arrange(Model) |> 
+  kbl() |> 
+  kable_styling(bootstrap_options = c("responsive", "hover", "striped")) |> 
+  pack_rows(group_label = "Mazda", start_row = 5, end_row = 6, italic = T, color="red") |> 
+  pack_rows(group_label = "Mercury", start_row = 7, end_row = 11, underline = T, color="green") |> 
+  add_header_above(header = c(" "=2, "Engine Stats"=3, " "=3))
+```
+
