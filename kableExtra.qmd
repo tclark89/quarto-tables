@@ -1,0 +1,106 @@
+## The Next Step: kableExtra
+
+kableExtra is a library that makes it much easier to build on 
+`knitr::kable` tables without having to muck around with CSS. 
+
+```{r}
+#| label: kableExtra-more-options
+mtcars |> 
+  head() |> 
+  kable(
+    col.names = c("Miles/(US) Gallon", "Number of Cylinders",
+                  "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
+                  "Weight (1000 lbs.)", "1/4 Mile Time", 
+                  "Engine (0=V-shaped, 1=Straight",
+                  "Transmission: (0=automatic, 1=manual)",
+                  "Number of Forward Gears",
+                  "Number of Carburetors"),
+    caption = "Motor Trend Car Road Tests",
+    align = "r",
+    digits=c(1, 0, 0, 0, 2, 1, 1, 0, 0, 0, 0)
+  )
+```
+
+`knitr::kable` and `kableExtra::kable` are basically identical functions,
+as seen above. `kableExtra` also includes the `kbl` function, which
+produces kable tables but has better auto-completion and help info 
+for the various options `knitr` has under the hood, especially for
+TeX tables.
+
+### Getting Started
+
+The fast way to clean up a `kable` is to add one of the functions
+from `kableExtra`:
+  
+  - `kable_classic`
+- `kable_classic_2`
+- `kable_material`
+- `kable_material_dark`
+- `kable_minimal`
+- `kable_paper`
+
+
+Examples (with code and some columns omited for brevity):
+  
+  ```{r}
+#| label: kable-func
+
+# creates a basic kable to pipe into the syling options:
+kableFunc <- function(caption){
+  mtcars |> 
+    select(mpg:wt) |> 
+    head() |> 
+    kbl(
+      caption = caption,
+      align = "r",
+    )
+}
+```
+
+
+
+```{r}
+#| label: kable-classic
+kableFunc(caption = "kable_classic") |> 
+  kable_classic()
+```
+
+```{r}
+#| label: kable-classic-2
+
+kableFunc(caption = "kable_classic_2") |> 
+  kable_classic_2()
+```
+
+```{r}
+#| label: kable-material
+
+kableFunc(caption = "kable_material") |> 
+  kable_material()
+```
+
+```{r}
+#| label: kable-material-dark
+
+kableFunc(caption = "kable_material_dark") |> 
+  kable_material_dark()
+```
+
+```{r}
+#| label: kable-minimal
+
+kableFunc(caption = "kable_minimal") |> 
+  kable_minimal()
+```
+
+```{r}
+#| label: kable-paper
+
+kableFunc(caption = "kable_paper") |> 
+  kable_paper()
+```
+
+All of these options provide pretty good tables. 
+When further customization is desired, enter: `kable_styling`.
+
+### Getting Stylish
