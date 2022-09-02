@@ -42,7 +42,7 @@ from `kableExtra`:
 
 Examples (with code and some columns omited for brevity):
   
-  ```{r}
+```{r}
 #| label: kable-func
 
 # creates a basic kable to pipe into the syling options:
