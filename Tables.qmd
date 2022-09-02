@@ -23,10 +23,8 @@ head(mtcars)
 
 But that's not very friendly or professional, is it? 
   How does someone evaluate what the data is saying?
-  Why would they even read your report if you're just spitting
-  out data? That is where the tools offered by 
-  R^[or Python, or what have you. I use R.] and Quarto
-  come in. 
+  Why would they even read your report if you're just spitting out data? 
+  That is where the tools available in R and Quarto come in. 
 
 
 ## Tools of the Trade
@@ -40,7 +38,7 @@ The libraries that are used in this document are:
 - DataTables: `library(DT)`
 - flextable: `library(flextable)`
 - huxtable: `library(huxtable)`
-- More (`rmarkdown::paged`, `reactable`, `formattable`, `pixiedust`) may come later
+- More (`rmarkdown::paged_table`, `reactable`, `formattable`, `pixiedust`) may come later
 
 ```{r}
 #| label: load-libraries
