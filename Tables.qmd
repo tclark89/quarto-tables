@@ -51,9 +51,12 @@ library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(gt)
-library(DT)
 library(flextable)
 library(huxtable)
+library(DT)
+library(reactable)
+library(formattable)
+library(pixiedust)
 
 ```
 
