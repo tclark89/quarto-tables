@@ -1,4 +1,4 @@
-## The Next Step: kableExtra
+## kableExtra: The Next Step
 
 kableExtra is a library that makes it much easier to build on 
 `knitr::kable` tables without having to muck around with CSS. 
@@ -69,7 +69,7 @@ kableFunc(caption = "kable_classic") |>
 #| label: kable-classic-2
 
 kableFunc(caption = "kable_classic_2") |> 
-  kable_classic_2()
+  kable_classic_2() 
 ```
 
 ```{r}
@@ -104,3 +104,27 @@ All of these options provide pretty good tables.
 When further customization is desired, enter: `kable_styling`.
 
 ### Getting Stylish
+
+The `kable_styling` function can be used to further customize the table with ease.
+  the `bootstrap_options` option allows the user to specify options such as
+  `basic`, `striped`, `bordered` and more. See `help(kable_styling)` for more
+  information. I like to use `c("striped", "responsive", "hover")` as a starting
+  point for HTML tables. 
+
+```{r}
+#| kable-styling-ex1
+kableFunc(caption="Striped, Responsive, Hover") |> 
+  kable_styling(bootstrap_options = c("striped", "responsive", "hover"))
+```
+
+These options can be used on basic `kable` tables or those styled with the 
+various functions above. 
+
+```{r}
+#| label: kable-classic2-striped
+kableFunc(caption = "kable_classic_2 + bootstrap options") |> 
+  kable_classic_2() |> 
+  kable_styling(bootstrap_options = c("striped", "border"))
+```
+
+### Columns and Rows and Footnotes, oh my!

@@ -1,4 +1,4 @@
-## Ol' Reliable: Knitr's Kable
+## Knitr::kable, Ol' Reliable
 
 ### The Basics
 
