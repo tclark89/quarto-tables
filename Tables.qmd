@@ -60,8 +60,8 @@ library(pixiedust)
 
 ```
 
-## Ol' Reliable: Knitr's Kable
 
+## Ol' Reliable: Knitr's Kable
 
 ### The Basics
 
@@ -72,8 +72,8 @@ The `kable` function from the Knitr library is always a good place
   
 ```{r}
 #| label: kable-basic
-mtcars %>% 
-  head() %>% 
+mtcars |> 
+  head() |> 
   knitr::kable()
 ```
 
@@ -88,8 +88,8 @@ Luckily `kable` has some options that we can invoke.
 
 ```{r}
 #| label: kable-col_names
-mtcars %>% 
-  head() %>% 
+mtcars |> 
+  head() |> 
   knitr::kable(
     col.names = c("Miles/(US) Gallon", "Number of Cylinders",
                   "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
@@ -118,8 +118,8 @@ That's a little better. At least we know what the columns are,
   
 ```{r}
 #| label: knitr-more-options
-mtcars %>% 
-  head() %>% 
+mtcars |> 
+  head() |> 
   knitr::kable(
     col.names = c("Miles/(US) Gallon", "Number of Cylinders",
                   "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
@@ -142,15 +142,15 @@ mtcars %>%
   Fortunately there are other tools available that let us stay within
   the realm of R programming to further modify `knitr::kable` tables.
   
-## The next step: kableExtra
+## The Next Step: kableExtra
 
 kableExtra is a library that makes it much easier to build on 
   `knitr::kable` tables without having to muck around with CSS. 
   
 ```{r}
 #| label: kableExtra-more-options
-mtcars %>% 
-  head() %>% 
+mtcars |> 
+  head() |> 
   kable(
     col.names = c("Miles/(US) Gallon", "Number of Cylinders",
                   "Displacement (cu. in.)", "Gross Horsepower", "Rear Axle Ratio",
@@ -191,9 +191,9 @@ Examples (with code and some columns omited for brevity):
 
 # creates a basic kable to pipe into the syling options:
 kableFunc <- function(caption){
-  mtcars %>% 
-  select(mpg:wt) %>% 
-  head() %>% 
+  mtcars |> 
+  select(mpg:wt) |> 
+  head() |> 
   kbl(
     caption = caption,
     align = "r",
@@ -205,42 +205,42 @@ kableFunc <- function(caption){
 
 ```{r}
 #| label: kable-classic
-kableFunc(caption = "kable_classic") %>% 
+kableFunc(caption = "kable_classic") |> 
   kable_classic()
 ```
 
 ```{r}
 #| label: kable-classic-2
 
-kableFunc(caption = "kable_classic_2") %>% 
+kableFunc(caption = "kable_classic_2") |> 
   kable_classic_2()
 ```
 
 ```{r}
 #| label: kable-material
 
-kableFunc(caption = "kable_material") %>% 
+kableFunc(caption = "kable_material") |> 
   kable_material()
 ```
 
 ```{r}
 #| label: kable-material-dark
 
-kableFunc(caption = "kable_material_dark") %>% 
+kableFunc(caption = "kable_material_dark") |> 
   kable_material_dark()
 ```
 
 ```{r}
 #| label: kable-minimal
 
-kableFunc(caption = "kable_minimal") %>% 
+kableFunc(caption = "kable_minimal") |> 
   kable_minimal()
 ```
 
 ```{r}
 #| label: kable-paper
 
-kableFunc(caption = "kable_paper") %>% 
+kableFunc(caption = "kable_paper") |> 
   kable_paper()
 ```
 
