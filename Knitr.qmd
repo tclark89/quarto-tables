@@ -15,7 +15,7 @@ mtcars |>
 ```
 
 Well that's not too exciting. It's not much different than just 
-  printing the dataframe. It just has bolded column headers. 
+  printing the dataframe. It just has bold column headers. 
   
   
 ### Adding some detail
