@@ -1,0 +1,6 @@
+To put an entire dataset in an HTML document one could use 
+`rmarkdown::paged_table`:
+  
+```{r}
+rmarkdown::paged_table(mtcars)
+```
