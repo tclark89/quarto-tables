@@ -139,6 +139,7 @@ mtcars |>
   kable_styling(bootstrap_options = c("responsive", "hover", "striped")) |> 
   pack_rows(group_label = "Mazda", start_row = 5, end_row = 6, italic = T, color="red") |> 
   pack_rows(group_label = "Mercury", start_row = 7, end_row = 11, underline = T, color="green") |> 
-  add_header_above(header = c(" "=2, "Engine Stats"=3, " "=3))
+  add_header_above(header = c(" "=2, "Engine Stats"=3, " "=3)) |> 
+  footnote("Mtcars dataset")
 ```
 
