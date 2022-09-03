@@ -158,4 +158,21 @@ The `add_header_above` function takes a named character vector to
   and the disply options desired.
 
 In addition to grouping rows and columns, kableExtra allows you to
-  specify column width/row height, colors, 
+  specify column width/row height, text and cell colors, etc.
+  
+```{r}
+mtcars[c(1:2, 8:14, 20:21),1:7] |> 
+  kbl() |>
+  kable_paper() |> 
+  row_spec(2, bold=T, color="red") |> 
+  row_spec(5, italic = T, color="yellow", background = "green") |> 
+  column_spec(3, color = c("red", "green", "blue")) |> 
+  column_spec(8, color=spec_color(mtcars$qsec[c(1:2, 8:14, 20:21)],
+                                  begin=0.2, end=0.7, option = "A"), width="3cm")
+```
+
+The example above is pretty garish, but demonstrates several options, 
+  including fixed values for entire rows/columns, vectors of values,
+  and the `spec_color` option for cell-dependent values. Row 0 can 
+  be specified to manipulate headers.
+  
