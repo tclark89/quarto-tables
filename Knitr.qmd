@@ -3,9 +3,7 @@
 ### The Basics
 
 The `kable` function from the Knitr library is always a good place 
-to start when putting together a table.
-(Note that kable must be specified with `knitr::kable` since we've
-  loaded kableExtra)
+  to start when putting together a table.
   
 ```{r}
 #| label: kable-basic
