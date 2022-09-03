@@ -2,6 +2,12 @@
 
 kableExtra is a library that makes it much easier to build on `knitr::kable` 
   tables without having to muck around with CSS.
+  
+```{r}
+#| label: load-kableExtra
+library(kableExtra)
+```
+
 
 ```{r}
 #| label: kableExtra-more-options
@@ -44,8 +50,7 @@ Examples (with code and some columns omited for brevity):
 
 # creates a basic kable to pipe into the syling options:
 kableFunc <- function(caption){
-  mtcars |> 
-    select(mpg:wt) |> 
+  mtcars[1:6] |> 
     head() |> 
     kbl(
       caption = caption,
@@ -130,16 +135,27 @@ kableFunc(caption = "kable_classic_2 + bootstrap options") |>
   
 ```{r}
 #| label: pack-rows-add-header
-mtcars |> 
-  select(mpg:qsec) |> 
-  head(12) |> 
-  rownames_to_column(var="Model") |> 
-  arrange(Model) |> 
+mtcars[c(1:2, 8:14, 20:21),1:7] |> 
+
   kbl() |> 
   kable_styling(bootstrap_options = c("responsive", "hover", "striped")) |> 
-  pack_rows(group_label = "Mazda", start_row = 5, end_row = 6, italic = T, color="red") |> 
-  pack_rows(group_label = "Mercury", start_row = 7, end_row = 11, underline = T, color="green") |> 
-  add_header_above(header = c(" "=2, "Engine Stats"=3, " "=3)) |> 
-  footnote("Mtcars dataset")
+  pack_rows(group_label = "Mazda", start_row = 1, end_row = 2, 
+            italic = T, color="red") |>
+  pack_rows(group_label = "Mercury", start_row = 3, end_row = 9, 
+            underline = T, color="green") |>
+  pack_rows(group_label = "Toyota", start_row = 10, end_row = 11,
+            strikeout = T, color="blue") |>
+  add_header_above(header = c(" "=2, "Engine Stats"=3, " "=3),
+                   angle=10) |> 
+  footnote(general = "Mtcars dataset")
 ```
 
+The `add_header_above` function takes a named character vector to
+  specify which columns to group and the name to give them. You can
+  also specify if the headers should be bold, angled, pink, etc.
+  `pack_rows` can be called that way, but can also be called on
+  a group-by-group basis by specifying the start and end rows
+  and the disply options desired.
+
+In addition to grouping rows and columns, kableExtra allows you to
+  specify column width/row height, colors, 
