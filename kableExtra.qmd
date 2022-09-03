@@ -136,7 +136,6 @@ kableFunc(caption = "kable_classic_2 + bootstrap options") |>
 ```{r}
 #| label: pack-rows-add-header
 mtcars[c(1:2, 8:14, 20:21),1:7] |> 
-
   kbl() |> 
   kable_styling(bootstrap_options = c("responsive", "hover", "striped")) |> 
   pack_rows(group_label = "Mazda", start_row = 1, end_row = 2, 
@@ -155,7 +154,38 @@ The `add_header_above` function takes a named character vector to
   also specify if the headers should be bold, angled, pink, etc.
   `pack_rows` can be called that way, but can also be called on
   a group-by-group basis by specifying the start and end rows
-  and the disply options desired.
+  and the display options desired.
+  
+The `footnote` function allows you to easily add general footnotes. 
+  Adding markers into the table itself (asterisks, numbers, letters, etc.) 
+  has to be done manually:
+
+```{r}
+#| label: kable-footnotes
+
+mtcarsFootnotes <- mtcars[c(1:2, 8:14),1:7] 
+
+mtcarsFootnotes$hp[3] <- paste0(mtcarsFootnotes$hp[3], 
+                                footnote_marker_number(1))
+
+mtcarsFootnotes$hp[7:9] <- paste0(mtcarsFootnotes$hp[7:9], 
+                                footnote_marker_number(2))
+
+names(mtcarsFootnotes)[2] <- paste0(names(mtcarsFootnotes[2]), 
+                                    footnote_marker_symbol())
+
+mtcarsFootnotes |> 
+  kbl(escape = F) |> 
+  kable_styling(bootstrap_options = c("responsive", "hover", "striped")) |> 
+  footnote(number = c("Lowest HP", "Highest HP"),
+           symbol = c("Engine Cylinders"))
+```
+
+Other tools have other options, but for better or for worse this is how kableExtra
+  works. I am not entirely opposed since I tend to prefer to shape the data with
+  tools made for that purpose and then just let `knitr` and `kableExtra` put the 
+  polish on the presentation. 
+
 
 In addition to grouping rows and columns, kableExtra allows you to
   specify column width/row height, text and cell colors, etc.
@@ -176,3 +206,71 @@ The example above is pretty garish, but demonstrates several options,
   and the `spec_color` option for cell-dependent values. Row 0 can 
   be specified to manipulate headers.
   
+Finally, if you just have to have a very large dataset in the report, kableExtra
+  allows for the creation of large scrollable tables. Specify the width, height,
+  or both in either measurements (in, cm) or pixels:
+
+```{r}
+#| label: kable-scroll
+mtcars |> 
+  kbl() |> 
+  kable_material() |> 
+  scroll_box(height="500px", width="80%")
+```
+
+### In Conclusion
+
+Using all of the tools above, you can make a pretty nice table
+  that helps your readers understand the data and the information
+  contained within.
+
+```{r}
+#| label: kableExtra-final
+
+# First let's sort by quarter-mile time:
+mtcarsFinal <- mtcars[order(mtcars$qsec),]
+
+# We need to specify the column names outside of kbl() since we're
+# going to add some markers to them:
+names(mtcarsFinal) <- c(
+  "MPG", 
+  "Cylinders", 
+  paste0("Displacement", footnote_marker_alphabet(1)),
+  "HP",
+  "Rear Axle Ratio",
+  paste0("Weight", footnote_marker_alphabet(2)),
+  "1/4 mile time", 
+  paste0("Engine Shape", footnote_marker_alphabet(3)),
+  paste0("Transmission", footnote_marker_alphabet(4)),
+  "Forward Gears", 
+  "Carburetors")
+
+# Now we pipe the data into kbl():
+mtcarsFinal |> 
+  kbl(escape=F,
+      align=c("lrrrrrrrcccc"),
+      caption="Motor Trend Car Road Tests Data") |> 
+  kable_classic() |> 
+  kable_styling(bootstrap_options = c("responsive", "hover")) |> 
+  # Let's group the rows by 1/4 mile time:
+  pack_rows(index = c("<15 seconds"=2, "15-16 seconds"=3, "16+ seconds"=nrow(mtcarsFinal)-5)) |> 
+  # Let's shrink the last few columns, they don't need a lot of space:
+  column_spec(c(9:12), width = "20px") |> 
+  # The counter-intuitive part: color coding the rows using column_spec():
+  # If we try this with row_spec we can apply a format to all of the rows, but 
+  # it will only have 1 data point to scale the color on and then all the rows 
+  # are the same color. We need to use column_spec and select all of the columns:
+  column_spec(1:ncol(mtcarsFinal), 
+           color=spec_color(mtcarsFinal$HP, option = "B", end=0.7)) |> 
+  # Here are our footnotes about units, sorting, and the color-coding:
+  footnote(alphabet = c("cu.in.", 
+                        "1000lbs",
+                        "0=V-Shaped, 1=Straight", 
+                        "0=Automatic, 1=Manual"),
+           general = c("Rows are color-coded using Horsepower rating",
+                       "Rows are sorted by 1/4 mile time, shortest to longest")) |> 
+  # Finally, make it scrollable:
+  scroll_box(height="500px")
+
+```
+
